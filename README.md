@@ -6,7 +6,9 @@
 > Therefore, the sole purpose of this repository is to show how to build an *userspace* syscall interception framework
 > by only relying on the (classic) seccomp-bpf.
 >
-> The code is not complete at all but at least 95% of basic musl-libc passing for "no-op" syscall interception. The one
+> The code is not complete at all but at least 95% of basic musl-libc tests are passing for "no-op" syscall
+> interception.
+> The one
 > of the most
 > difficult parts that I have not implemented is proper signal handling of blocked signals while executing
 *interruptible* syscalls.
@@ -37,8 +39,7 @@ modification (with some exceptions).
 
 First of all, the tvisor binaries are running in a higher address space than the guest by passing `--image-base` linker
 flag when building the tvisor binary. Tvisor users run the guest binary
-as `./tvisor <tvisor_args> -- <guest_binary> <guest_args>`
-and the tvisor binary. Tvisor binary does the following things:
+as `./tvisor <tvisor_args> -- <guest_binary> <guest_args>`. Tvisor binary does the following things:
 
 1. Parse the ELF binary and load it into the same virtual memory space.
 2. Installs special signal handlers to handle *all* signals.
