@@ -1,0 +1,22 @@
+[package]
+name = "tvisor"
+version = "0.1.0"
+edition = "2021"
+
+[build-dependencies]
+cc = "1.0"
+
+[dependencies]
+syscalls = { version = "0.6", default-features = false }
+xmas-elf = "0.9.1"
+talc = "4.0.0"
+spin = "0.9.8"
+portable-atomic = { version = "1.3", default-features = false, features = ["require-cas"] }
+
+[[bin]]
+name = "tvisor-fs"
+path = "bin/fs.rs"
+
+[[bin]]
+name = "tvisor-nop"
+path = "bin/nop.rs"
